@@ -6,5 +6,9 @@ export class CreateBookInput {
   title: string;
 
   @Field()
-  author: string;
+  authorId: number;
+
+  @Field()
+  isPublished: boolean;
+
 }

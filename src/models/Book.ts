@@ -1,5 +1,6 @@
-import { Entity, BaseEntity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column,ManyToOne, JoinColumn, PrimaryColumn} from "typeorm";
 import { ObjectType, Field, ID } from "type-graphql";
+import { Author } from "./Author";
 
 @Entity()
 @ObjectType()
@@ -12,9 +13,13 @@ export class Book extends BaseEntity {
   @Column()
   title: string;
 
-  @Field(() => String)
-  @Column()
-  author: string;
+  @PrimaryColumn()
+  authorId: number;
+
+  @Field(() => Author)
+  @ManyToOne(() => Author, author => author.books, { primary: true })
+  @JoinColumn({ name: "authorId" })
+  author: Promise<Author>;
 
   @Field(() => Boolean)
   @Column({ default: false })

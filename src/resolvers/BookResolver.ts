@@ -13,6 +13,7 @@ export class BookResolver {
   @Query(() => Book)
   book(@Arg("id") id: string) {
     return Book.findOne({ where: { id } });
+    
   }
 
   @Mutation(() => Book)

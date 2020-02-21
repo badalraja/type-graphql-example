@@ -6,8 +6,6 @@ export class UpdateBookInput {
   title?: string;
 
   @Field({ nullable: true })
-  author?: string;
-
-  @Field({ nullable: true })
   isPublished?: boolean;
+  
 }
